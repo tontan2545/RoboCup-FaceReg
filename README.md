@@ -109,3 +109,6 @@ Detect a face/ faces in the image
 | :-------- | :------- |
 | `dictionary` | `Return known faces in the image and it's coordinates in the form of { name: (top, right, bottom, left) }` |
 
+## Credits
+
+* I would like to express utmost gratitude towards [Adam Geitgey](https://github.com/ageitgey) for his work in [face_recognition](https://github.com/ageitgey/face_recognition) as his library has played a huge part in this project

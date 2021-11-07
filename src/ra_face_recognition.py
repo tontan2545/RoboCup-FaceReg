@@ -18,7 +18,7 @@ def load_encodings(db_path):
 class RAFaceRecognition:
     def __init__(self, db_path):
         """
-        Initialize RAFaceRecognition class
+        Initialize RAFaceRecognition object
 
         :param db_path: path to database for storing face encodings
         """

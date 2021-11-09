@@ -24,6 +24,7 @@ class RAFaceRecognition:
         """
         self.db_path = db_path
         self.face_encodings_db, self.names_db = load_encodings(db_path)
+        print("loaded ", len(self.face_encodings_db), " encodings of ", self.names_db)
 
     def register(self, name, img):
         """
@@ -50,6 +51,7 @@ class RAFaceRecognition:
         :return: return a dictionary of { name: (top, right, bottom, left) }
         """
         faces = {}
+        if len(self.face_encodings_db) == 0: return faces
 
         small_img = cv2.resize(img, (0, 0), fx=0.25, fy=0.25)
         rgb_small_frame = small_img[:, :, ::-1]
@@ -57,14 +59,15 @@ class RAFaceRecognition:
         face_locations = face_recognition.face_locations(rgb_small_frame)
         encodings = face_recognition.face_encodings(rgb_small_frame, face_locations)
 
-        for encoding, index in enumerate(encodings):
+        for index, encoding in enumerate(encodings):
             matches = face_recognition.compare_faces(self.face_encodings_db, encoding)
             face_distances = face_recognition.face_distance(self.face_encodings_db, encoding)
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = self.names_db[best_match_index]
+                (top, right, bottom, left) = face_locations[index]
                 if name not in faces:
-                    faces[name] = face_locations[index]
+                    faces[name] = (top*4, right*4, bottom*4, left*4)
 
         return faces
 

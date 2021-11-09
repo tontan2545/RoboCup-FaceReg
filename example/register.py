@@ -1,7 +1,4 @@
 import cv2
-import os
-import face_recognition
-import pickle
 from RoboCup.ra_face_recognition import RAFaceRecognition
 
 if(__name__ == "__main__"):

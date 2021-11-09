@@ -70,5 +70,4 @@ class RAFaceRecognition:
 
 
 if __name__ == "__main__":
-    rafaceRecog = RAFaceRecognition("database")
-
+    raFaceRecognition = RAFaceRecognition(db_path="database")

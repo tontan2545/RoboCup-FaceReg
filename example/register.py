@@ -1,6 +1,13 @@
 import cv2
 from RoboCup.ra_face_recognition import RAFaceRecognition
 
+def getName():
+    n = input("Enter name: ")
+    while(len(n.strip()) == 0):
+        print("Empty name is not Valid!")
+        n = input("Enter name: ")
+    return n.strip()
+
 if(__name__ == "__main__"):
     raFaceRecognition = RAFaceRecognition("../database")
     vid = cv2.VideoCapture(0)
@@ -22,7 +29,7 @@ if(__name__ == "__main__"):
         if pressedKey == ord('q'):
             break
         elif pressedKey == ord('s'):
-            name = input("Enter name: ")
+            name = getName()
             status = raFaceRecognition.register(name, plain_frame)
             print(status["message"])
             break
